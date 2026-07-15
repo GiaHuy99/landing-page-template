@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0c0c0c;
+  --color-navy-light: #141414;
+  --color-navy-mid: #1c1c1c;
+  --color-gold: #c5a059;
+  --color-gold-light: #d4b878;
+  --color-cream: #ede6d8;
+  --color-cream-bright: #f7f2ea;
+  --color-gold-muted: #d4c4a8;
+  --color-ink: #2e2822;
+  --color-ink-soft: #524a3f;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --default-font-family: var(--font-sans);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-navy);
+    color: white;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-gold) 40%, transparent);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .reveal-on-scroll {
+    animation: reveal-up 0.8s var(--ease-premium) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  @supports not (animation-timeline: view()) {
+    .reveal-on-scroll {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-on-scroll {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
