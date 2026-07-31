@@ -85,3 +85,4 @@ Tailwind v4 tokens live in [`src/app/globals.css`](src/app/globals.css): `navy`,
 ## Lead capture
 
 All forms go through [`src/lib/sendLeadEmail.ts`](src/lib/sendLeadEmail.ts) with source tracking from [`src/lib/leadTracking.ts`](src/lib/leadTracking.ts). Without EmailJS env vars, the UI shows a clear configuration message instead of failing silently.
+# my-landing-page
